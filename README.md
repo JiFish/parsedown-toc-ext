@@ -53,20 +53,34 @@ $tocText = $parser->renderToc();
 
 ```php
 use jifish\ParsedownTocExt\ParsedownExtraToc;
-
 $parser = new ParsedownExtraToc();
-$html = $parser->text($markdown);
-$toc = $parser->getToc();
 ```
 
 ### Substitution of [TOC] marker
 ```php
 use jifish\ParsedownTocExt\ParsedownToc;
-
 $parser = new ParsedownToc();
 
 $html = $parser->text($markdown);
 $html = str_replace("[TOC]", $parser->renderToc(), $html);
+```
+
+### Custom id generation
+
+If you need you own id generation strategy, you can override `slugify`:
+```php
+use jifish\ParsedownTocExt\ParsedownToc;
+
+class ParsedownTocCustomId extends ParsedownToc
+{
+    // Generate random ids
+    protected function slugify(string $text): string
+    {
+        return uniqid();
+    }
+}
+
+$parser = new ParsedownTocCustomId();
 ```
 
 ## Heading ID Generation
