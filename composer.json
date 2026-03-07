@@ -1,0 +1,26 @@
+{
+    "name": "jifish/parsedown-toc-ext",
+    "description": "TOC extension for parsedown and parsedown-extra with automatic heading IDs.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "erusev/parsedown": "^1.8"
+    },
+    "suggest": {
+        "parsedown/parsedown-extra": "Adds support for ParsedownExtraWithToc"
+    },
+    "autoload": {
+        "psr-4": {
+            "jifish\\ParsedownTocExt\\": "src/"
+        }
+    },
+    "keywords": [
+        "parsedown",
+        "markdown",
+        "toc",
+        "table-of-contents"
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
