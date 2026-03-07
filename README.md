@@ -58,9 +58,6 @@ $parser = new ParsedownExtraToc();
 
 ### Substitution of [TOC] marker
 ```php
-use jifish\ParsedownTocExt\ParsedownToc;
-$parser = new ParsedownToc();
-
 $html = $parser->text($markdown);
 $html = str_replace("[TOC]", $parser->renderToc(), $html);
 ```
