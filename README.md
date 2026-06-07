@@ -221,7 +221,7 @@ renderToc(
 
 * `$excludeFirstHeading` (default: `false`)
 
-  Skips the first heading in the document. Useful when the first heading is the page title and should not appear in the TOC.
+  Skips the first heading in the document. Useful when the first heading is the page title and should not appear in the TOC. The next visible heading becomes the root of the rendered TOC, while `maxDepth` remains relative to the full document.
 
 #### `hasToc(): bool`
 

@@ -203,30 +203,31 @@ trait ParsedownTocTrait
             return '';
         }
 
-        $entries = array_values($this->toc);
-        $minLevel = min(array_column($entries, 'level'));
+        $minLevel = min(array_column($this->toc, 'level'));
+        $entries = $this->toc;
+
+        if ($excludeFirstHeading) {
+            array_shift($entries);
+        }
+
+        if (empty($entries)) {
+            return '';
+        }
+
+        $renderMinLevel = min(array_column($entries, 'level'));
 
         $lines = [];
         $previousDepth = 0;
-        $isFirst = true;
         $counters = [];
 
-        foreach ($this->toc as $entryId => $entry) {
-
-            if ($excludeFirstHeading && $isFirst) {
-                $isFirst = false;
-                continue;
-            }
-
-            $isFirst = false;
-
-            $depth = $entry['level'] - $minLevel;
+        foreach ($entries as $entryId => $entry) {
+            $depth = $entry['level'] - $renderMinLevel;
 
             if ($collapseSkippedLevels && $depth > $previousDepth + 1) {
                 $depth = $previousDepth + 1;
             }
 
-            if ($maxDepth !== null && $depth >= $maxDepth) {
+            if ($maxDepth !== null && $entry['level'] - $minLevel >= $maxDepth) {
                 continue;
             }
 
